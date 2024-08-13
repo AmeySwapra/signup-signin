@@ -2,6 +2,7 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
+import './SignUp.css';  
 
 const SignUp = () => {
   const navigate = useNavigate();
@@ -35,36 +36,53 @@ const SignUp = () => {
   };
 
   return (
-    <div>
+    <div className="sign-up-container">
       <h2>Signup</h2>
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
-        <Form>
-          <div>
-            <label>Name</label>
-            <Field type="text" name="name" />
-            <ErrorMessage name="name" component="div" />
-          </div>
-          <div>
-            <label>Email</label>
-            <Field type="email" name="email" />
-            <ErrorMessage name="email" component="div" />
-          </div>
-          <div>
-            <label>Password</label>
-            <Field type="password" name="password" />
-            <ErrorMessage name="password" component="div" />
-          </div>
-          <div>
-            <label>Confirm Password</label>
-            <Field type="password" name="confirmPassword" />
-            <ErrorMessage name="confirmPassword" component="div" />
-          </div>
-          <button type="submit">Signup</button>
-        </Form>
+        {({ errors, touched }) => (
+          <Form>
+            <div className="form-group">
+              <label>Name</label><br /><br />
+              <Field
+                type="text"
+                name="name"
+                className={`form-field ${touched.name && !errors.name ? 'valid' : ''} ${touched.name && errors.name ? 'invalid' : ''}`}
+              />
+              <ErrorMessage name="name" component="div" className="error-message" />
+            </div>
+            <div className="form-group">
+              <label>Email</label><br /><br />
+              <Field
+                type="email"
+                name="email"
+                className={`form-field ${touched.email && !errors.email ? 'valid' : ''} ${touched.email && errors.email ? 'invalid' : ''}`}
+              />
+              <ErrorMessage name="email" component="div" className="error-message" />
+            </div>
+            <div className="form-group">
+              <label>Password</label><br /><br />
+              <Field
+                type="password"
+                name="password"
+                className={`form-field ${touched.password && !errors.password ? 'valid' : ''} ${touched.password && errors.password ? 'invalid' : ''}`}
+              />
+              <ErrorMessage name="password" component="div" className="error-message" />
+            </div>
+            <div className="form-group">
+              <label>Confirm Password</label><br /><br />
+              <Field
+                type="password"
+                name="confirmPassword"
+                className={`form-field ${touched.confirmPassword && !errors.confirmPassword ? 'valid' : ''} ${touched.confirmPassword && errors.confirmPassword ? 'invalid' : ''}`}
+              />
+              <ErrorMessage name="confirmPassword" component="div" className="error-message" />
+            </div>
+            <button type="submit" className="signup-button">Signup</button>
+          </Form>
+        )}
       </Formik>
     </div>
   );
 };
 
 export default SignUp;
-

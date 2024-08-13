@@ -1,19 +1,19 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
 import { Formik, Form, Field, ErrorMessage } from 'formik';
 import * as Yup from 'yup';
-
+import './SignIn.css'
+import { useNavigate } from 'react-router-dom';
 const SignIn = () => {
   const navigate = useNavigate();
 
   const initialValues = {
     email: '',
-    password: ''
+    password: '',
   };
 
   const validationSchema = Yup.object({
     email: Yup.string().email('Invalid email format').required('Required'),
-    password: Yup.string().min(6, 'Password must be at least 6 characters long').required('Required')
+    password: Yup.string().min(6, 'Password must be at least 6 characters long').required('Required'),
   });
 
   const onSubmit = values => {
@@ -35,28 +35,39 @@ const SignIn = () => {
   };
 
   return (
-    <div>
-      <h2>SignIn</h2>
+    <div className="sign-in-container">
+      <h2>Sign In</h2>
       <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
-        <Form>
-          <div>
-            <label>Email</label>
-            <Field type="email" name="email" />
-            <ErrorMessage name="email" component="div" />
-          </div>
-          <div>
-            <label>Password</label>
-            <Field type="password" name="password" />
-            <ErrorMessage name="password" component="div" />
-          </div>
-          <button type="submit">Login</button>
-        </Form>
+        {({ errors, touched }) => (
+          <Form>
+            <div className="form-group">
+              <label>Email</label><br /><br />
+              <Field
+                type="email"
+                name="email"
+                className={`form-field ${touched.email && !errors.email ? 'valid' : ''} ${touched.email && errors.email ? 'invalid' : ''}`}
+              />
+              <ErrorMessage name="email" component="div" className="error-message" />
+            </div>
+            <div className="form-group">
+              <label>Password</label><br /><br />
+              <Field
+                type="password"
+                name="password"
+                className={`form-field ${touched.password && !errors.password ? 'valid' : ''} ${touched.password && errors.password ? 'invalid' : ''}`}
+              />
+              <ErrorMessage name="password" component="div" className="error-message" />
+            </div>
+            <button type="submit" className="login-button">Login</button>
+          </Form>
+        )}
       </Formik>
     </div>
   );
 };
 
 export default SignIn;
+
 
 
 
