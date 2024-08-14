@@ -36,53 +36,63 @@ const SignUp = () => {
   };
 
   return (
-    <div className="sign-up-container">
-      <h2>Signup</h2>
-      <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
-        {({ errors, touched }) => (
-          <Form>
-            <div className="form-group">
-              <label>Name</label><br /><br />
-              <Field
-                type="text"
-                name="name"
-                className={`form-field ${touched.name && !errors.name ? 'valid' : ''} ${touched.name && errors.name ? 'invalid' : ''}`}
-              />
-              <ErrorMessage name="name" component="div" className="error-message" />
-            </div>
-            <div className="form-group">
-              <label>Email</label><br /><br />
-              <Field
-                type="email"
-                name="email"
-                className={`form-field ${touched.email && !errors.email ? 'valid' : ''} ${touched.email && errors.email ? 'invalid' : ''}`}
-              />
-              <ErrorMessage name="email" component="div" className="error-message" />
-            </div>
-            <div className="form-group">
-              <label>Password</label><br /><br />
-              <Field
-                type="password"
-                name="password"
-                className={`form-field ${touched.password && !errors.password ? 'valid' : ''} ${touched.password && errors.password ? 'invalid' : ''}`}
-              />
-              <ErrorMessage name="password" component="div" className="error-message" />
-            </div>
-            <div className="form-group">
-              <label>Confirm Password</label><br /><br />
-              <Field
-                type="password"
-                name="confirmPassword"
-                className={`form-field ${touched.confirmPassword && !errors.confirmPassword ? 'valid' : ''} ${touched.confirmPassword && errors.confirmPassword ? 'invalid' : ''}`}
-              />
-              <ErrorMessage name="confirmPassword" component="div" className="error-message" />
-            </div>
-            <button type="submit" className="signup-button">Signup</button>
-          </Form>
-        )}
-      </Formik>
+    <div className="sign-up-page">
+      <div className="image-container">
+        <img
+          src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-login-form/img1.webp"
+          className="sign-up-image"
+          alt="Sign up illustration"
+        />
+      </div>
+      <div className="sign-up-container">
+        <h2>Signup</h2>
+        <Formik initialValues={initialValues} validationSchema={validationSchema} onSubmit={onSubmit}>
+          {({ errors, touched }) => (
+            <Form>
+              <div className="form-group">
+                <label>Name</label><br /><br />
+                <Field
+                  type="text"
+                  name="name"
+                  className={`form-field ${touched.name && !errors.name ? 'valid' : ''} ${touched.name && errors.name ? 'invalid' : ''}`}
+                />
+                <ErrorMessage name="name" component="div" className="error-message" />
+              </div>
+              <div className="form-group">
+                <label>Email</label><br /><br />
+                <Field
+                  type="email"
+                  name="email"
+                  className={`form-field ${touched.email && !errors.email ? 'valid' : ''} ${touched.email && errors.email ? 'invalid' : ''}`}
+                />
+                <ErrorMessage name="email" component="div" className="error-message" />
+              </div>
+              <div className="form-group">
+                <label>Password</label><br /><br />
+                <Field
+                  type="password"
+                  name="password"
+                  className={`form-field ${touched.password && !errors.password ? 'valid' : ''} ${touched.password && errors.password ? 'invalid' : ''}`}
+                />
+                <ErrorMessage name="password" component="div" className="error-message" />
+              </div>
+              <div className="form-group">
+                <label>Confirm Password</label><br /><br />
+                <Field
+                  type="password"
+                  name="confirmPassword"
+                  className={`form-field ${touched.confirmPassword && !errors.confirmPassword ? 'valid' : ''} ${touched.confirmPassword && errors.confirmPassword ? 'invalid' : ''}`}
+                />
+                <ErrorMessage name="confirmPassword" component="div" className="error-message" />
+              </div>
+              <button type="submit" className="signup-button">Signup</button>
+            </Form>
+          )}
+        </Formik>
+      </div>
     </div>
   );
 };
 
 export default SignUp;
+
